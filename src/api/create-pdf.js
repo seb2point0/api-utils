@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
       left : "4cm"
     }
   }
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions', '--no-sandbox', '--disable-setuid-sandbox']});
   const page = await browser.newPage();
   await page.setContent(html);
   await page.emulateMediaType('screen');
