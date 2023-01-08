@@ -16,15 +16,16 @@ app.use(cors());
 app.use(express.json());
 
 app.use(middlewares.isAuth);
-app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
-
-app.use('/api/v1', api);
 
 app.get('/', (req, res) => {
   res.json({
     message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
   });
 });
+
+app.use('/api/v1', api);
+
+app.use(middlewares.notFound);
+app.use(middlewares.errorHandler);
 
 module.exports = app;
