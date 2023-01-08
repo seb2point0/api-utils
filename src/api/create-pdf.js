@@ -4,7 +4,16 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   const html = req.body.html || "No body";
-  const options = {}
+  const options = {
+    margin : {
+      top : "1.5cm",
+      right : "1.5cm",
+      bottom : "1.5cm",
+      left : "4cm"
+    },
+    width:"8.5in",
+    height:"11in"
+  }
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
