@@ -10,7 +10,9 @@ router.post('/', async (req, res) => {
       right : "1.5cm",
       bottom : "1.5cm",
       left : "4cm"
-    }
+    },
+    width:"8.5in",
+    height:"11in"
   }
   const browser = await puppeteer.launch({
     headless: true,
