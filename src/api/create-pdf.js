@@ -1,6 +1,5 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
-
 const router = express.Router();
 
 router.post('/', async (req, res) => {
@@ -20,11 +19,11 @@ router.post('/', async (req, res) => {
   const page = await browser.newPage();
   await page.setContent(html);
   await page.emulateMediaType('screen');
-  const pdfBuffer = await page.pdf(options);
+  const buffer = await page.pdf(options);
   await page.close();
   await browser.close();
   res.set("Content-Type", "application/pdf");
-  res.status(200).send(pdfBuffer);
+  res.status(200).send(buffer);
 });
 
 module.exports = router;

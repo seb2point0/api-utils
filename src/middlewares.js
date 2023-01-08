@@ -15,7 +15,18 @@ function errorHandler(err, req, res, next) {
   });
 }
 
+function isAuth(req, res, next) {
+  const auth = req.headers.authorization;
+  if (auth === 'Bearer ' + process.env.AUTH_TOKEN) {
+    next();
+  } else {
+    res.status(401);
+    res.send('Access forbidden');
+  }
+}
+
 module.exports = {
+  isAuth,
   notFound,
-  errorHandler
+  errorHandler,
 };
