@@ -10,16 +10,19 @@ router.post('/', async (req, res) => {
       right : "1.5cm",
       bottom : "1.5cm",
       left : "4cm"
-    },
-    width:"8.5in",
-    height:"11in"
+    }
   }
   const browser = await puppeteer.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--font-render-hinting=none'
+    ]
   });
   const page = await browser.newPage();
-  await page.setContent(html);
+  await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
+  await page.goto('data:text/html;charset=UTF-8,' + html, {waitUntil: 'networkidle0'});
   await page.emulateMediaType('screen');
   const buffer = await page.pdf(options);
   await page.close();
