@@ -1,7 +1,8 @@
 const express = require('express');
 
 const createPdf = require('./create-pdf');
-const createStreamyard = require('./create-streamyard');
+const createStreamyardLive = require('./create-streamyard-live');
+const createStreamyardRecording = require('./create-streamyard-record');
 const putRemarkable = require('./put-remarkable');
 
 const router = express.Router();
@@ -13,7 +14,8 @@ router.get('/', (req, res) => {
 });
 
 router.use('/create-pdf', createPdf);
-router.use('/create-streamyard', createStreamyard);
 router.use('/put-remarkable', putRemarkable);
+router.use('/create-streamyard-live', createStreamyardLive);
+router.use('/create-streamyard-record', createStreamyardRecording);
 
 module.exports = router;
